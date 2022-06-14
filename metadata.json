@@ -2,13 +2,17 @@
   "name": "lsst-ccs_daq",
   "version": "0.2.0",
   "author": "AURA/LSST",
-  "summary": "",
+  "summary": "Configure LSST CCS DAQ related services.",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/lsst-it/puppet-ccs_daq",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">= 5.0.0 < 9.0.0"
+    },
+    {
+      "name": "lsst/daq",
+      "version_requirement": ">= 0.1.2 < 2.0.0"
     }
   ],
   "operatingsystem_support": [

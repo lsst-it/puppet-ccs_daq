@@ -4,3 +4,5 @@
 fixtures:
   forge_modules:
     stdlib: "puppetlabs/stdlib"
+    daq: "lsst/daq"
+    archive: "puppet/archive"
