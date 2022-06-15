@@ -44,7 +44,7 @@ describe 'daq class' do
     it { is_expected.to be_owned_by 'ccsadm' }
     it { is_expected.to be_grouped_into 'ccsadm' }
     it { is_expected.to be_mode '644' } # serverspec does not like a leading 0
-    its(:content) { is_expected.to match %r{export DAQ_HOME=/opt/lsst/daq-sdk/R5-V0.6} }
+    its(:content) { is_expected.to match %r{^export DAQ_HOME=/opt/lsst/daq-sdk/R5-V0.6$} }
   end
 
   describe file('/opt/lsst/daq') do
