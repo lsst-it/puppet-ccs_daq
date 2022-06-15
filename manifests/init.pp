@@ -22,10 +22,8 @@ class ccs_daq (
 ) {
   require daq::daqsdk
 
-  $version = $daq::daqsdk::version
-  $prefix  = $daq::daqsdk::install_path
-
-  $daq_home = "${prefix}/${version}"
+  $version  = $daq::daqsdk::version
+  $daq_home = $daq::daqsdk::install_path
 
   if $version =~ /R(\d+)/ {
     $daq_version = $1
