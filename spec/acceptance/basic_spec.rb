@@ -50,4 +50,40 @@ describe 'daq class' do
   describe file('/opt/lsst/daq') do
     it { is_expected.not_to exist }
   end
+
+  describe 'daq_home param' do
+    context 'when /does/not/exist' do
+      let(:pp) do
+        <<-PP
+        group { 'ccsadm': }
+        user { 'ccsadm': gid => 'ccsadm' }
+
+        file { '/etc/ccs':  # normally created by lsst/ccs_software
+          ensure => directory,
+          owner  => 'ccsadm',
+          group  => 'ccsadm',
+          mode   => '0755',
+        }
+
+        class { 'daq::daqsdk':
+          version  => 'R5-V0.6',
+        }
+
+        class { 'ccs_daq':
+          daq_home => '/does/not/exist',
+        }
+        PP
+      end
+
+      it_behaves_like 'an idempotent resource'
+
+      describe file('/etc/ccs/daqv5-setup') do
+        it { is_expected.to be_file }
+        it { is_expected.to be_owned_by 'ccsadm' }
+        it { is_expected.to be_grouped_into 'ccsadm' }
+        it { is_expected.to be_mode '644' } # serverspec does not like a leading 0
+        its(:content) { is_expected.to match %r{^export DAQ_HOME=/does/not/exist$} }
+      end
+    end
+  end
 end

@@ -24,6 +24,7 @@ The following parameters are available in the `ccs_daq` class:
 * [`group`](#group)
 * [`config_dir`](#config_dir)
 * [`instrument`](#instrument)
+* [`daq_home`](#daq_home)
 
 ##### <a name="owner"></a>`owner`
 
@@ -56,4 +57,12 @@ Data type: `String`
 Name of the camera
 
 Default value: `'comcam'`
+
+##### <a name="daq_home"></a>`daq_home`
+
+Data type: `Optional[String]`
+
+Installation path of daq-sdk to use for ccs apps. Defaults to `$daq::daqsdk::install_path`
+
+Default value: ``undef``
 

@@ -14,16 +14,23 @@
 # @param instrument
 #   Name of the camera
 #
+# @param daq_home
+#   Installation path of daq-sdk to use for ccs apps. Defaults to `$daq::daqsdk::install_path`
+#
 class ccs_daq (
-  String $owner = 'ccsadm',
-  String $group = 'ccsadm',
-  String $config_dir = '/etc/ccs',
-  String $instrument = 'comcam',
+  String           $owner      = 'ccsadm',
+  String           $group      = 'ccsadm',
+  String           $config_dir = '/etc/ccs',
+  String           $instrument = 'comcam',
+  Optional[String] $daq_home   = undef,
 ) {
   require daq::daqsdk
 
   $version  = $daq::daqsdk::version
-  $daq_home = $daq::daqsdk::install_path
+  $_real_daq_home = $daq_home ? {
+    undef   => $daq::daqsdk::install_path,
+    default => $daq_home,
+  }
 
   if $version =~ /R(\d+)/ {
     $daq_version = $1
@@ -35,7 +42,7 @@ class ccs_daq (
 
   file { $daq_setup:
     ensure  => file,
-    content => epp("${title}/daqvX-setup.epp", { 'home' => $daq_home }),
+    content => epp("${title}/daqvX-setup.epp", { 'home' => $_real_daq_home }),
     owner   => $owner,
     group   => $group,
     mode    => '0644',
