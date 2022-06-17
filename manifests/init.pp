@@ -23,7 +23,7 @@ class ccs_daq (
   require daq::daqsdk
 
   $version  = $daq::daqsdk::version
-  $daq_home = $daq::daqsdk::install_path
+  $daq_home = "${daq::daqsdk::base_path}/ccs-production"
 
   if $version =~ /R(\d+)/ {
     $daq_version = $1
@@ -32,6 +32,20 @@ class ccs_daq (
   }
 
   $daq_setup = "${config_dir}/daqv${daq_version}-setup"
+
+  # XXX the file type's replace param does not work for symlinks
+  # https://github.com/puppetlabs/puppet/pull/8643
+  # https://tickets.puppetlabs.com/browse/PUP-10214
+  exec { "create but not update ${daq_home} symlink":
+    path    => ['/bin', '/usr/bin'],
+    command => "ln -snf ${basename($daq::daqsdk::install_path)} ${daq_home}",
+    # creates => $daq_home, XXX creates will trigger on dangling symlinks
+    unless  => "test -L ${daq_home}",
+  }
+  -> file { $daq_home:
+    owner => $owner,
+    group => $group,
+  }
 
   file { $daq_setup:
     ensure  => file,
