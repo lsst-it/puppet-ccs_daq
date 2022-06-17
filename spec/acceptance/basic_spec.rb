@@ -17,6 +17,7 @@ describe 'daq class' do
 
     class { 'daq::daqsdk':
       version => 'R5-V0.6',
+      purge   => false,
     }
 
     include ccs_daq
@@ -44,10 +45,33 @@ describe 'daq class' do
     it { is_expected.to be_owned_by 'ccsadm' }
     it { is_expected.to be_grouped_into 'ccsadm' }
     it { is_expected.to be_mode '644' } # serverspec does not like a leading 0
-    its(:content) { is_expected.to match %r{^export DAQ_HOME=/opt/lsst/daq-sdk/R5-V0.6$} }
+    its(:content) { is_expected.to match %r{^export DAQ_HOME=/opt/lsst/daq-sdk/ccs-production$} }
+  end
+
+  describe file('/opt/lsst/daq-sdk/ccs-production') do
+    it { is_expected.to be_symlink }
+    it { is_expected.to be_owned_by 'ccsadm' }
+    it { is_expected.to be_grouped_into 'ccsadm' }
+    it { is_expected.to be_linked_to 'R5-V0.6' }
   end
 
   describe file('/opt/lsst/daq') do
     it { is_expected.not_to exist }
+  end
+
+  context 'when ccs-production symlink manually changed' do
+    before(:context) do
+      shell('ln -snf foo /opt/lsst/daq-sdk/ccs-production')
+      shell('chown -h ccsadm:ccsadm /opt/lsst/daq-sdk/ccs-production')
+    end
+
+    it_behaves_like 'an idempotent resource'
+
+    describe file('/opt/lsst/daq-sdk/ccs-production') do
+      it { is_expected.to be_symlink }
+      it { is_expected.to be_owned_by 'ccsadm' }
+      it { is_expected.to be_grouped_into 'ccsadm' }
+      it { is_expected.to be_linked_to 'foo' }
+    end
   end
 end
