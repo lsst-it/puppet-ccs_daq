@@ -3,7 +3,7 @@
 require 'spec_helper_acceptance'
 
 describe 'daq class' do
-  let(:pp) do
+  let(:manifest) do
     <<-PP
     group { 'ccsadm': }
     user { 'ccsadm': gid => 'ccsadm' }
