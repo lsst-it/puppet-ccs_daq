@@ -20,12 +20,12 @@ Note that this mod is tightly coupled to the lsst/daq mod.
 
 The following parameters are available in the `ccs_daq` class:
 
-* [`owner`](#owner)
-* [`group`](#group)
-* [`config_dir`](#config_dir)
-* [`instrument`](#instrument)
+* [`owner`](#-ccs_daq--owner)
+* [`group`](#-ccs_daq--group)
+* [`config_dir`](#-ccs_daq--config_dir)
+* [`instrument`](#-ccs_daq--instrument)
 
-##### <a name="owner"></a>`owner`
+##### <a name="-ccs_daq--owner"></a>`owner`
 
 Data type: `String`
 
@@ -33,7 +33,7 @@ CCS user
 
 Default value: `'ccsadm'`
 
-##### <a name="group"></a>`group`
+##### <a name="-ccs_daq--group"></a>`group`
 
 Data type: `String`
 
@@ -41,7 +41,7 @@ CCS group
 
 Default value: `'ccsadm'`
 
-##### <a name="config_dir"></a>`config_dir`
+##### <a name="-ccs_daq--config_dir"></a>`config_dir`
 
 Data type: `String`
 
@@ -49,7 +49,7 @@ CCS configuration directory
 
 Default value: `'/etc/ccs'`
 
-##### <a name="instrument"></a>`instrument`
+##### <a name="-ccs_daq--instrument"></a>`instrument`
 
 Data type: `String`
 
