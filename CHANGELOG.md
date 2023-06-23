@@ -4,7 +4,20 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v0.5.0](https://github.com/lsst-it/puppet-ccs_daq/tree/v0.5.0) (2023-01-30)
+## [v2.0.0](https://github.com/lsst-it/puppet-ccs_daq/tree/v2.0.0) (2023-06-23)
+
+[Full Changelog](https://github.com/lsst-it/puppet-ccs_daq/compare/v0.5.0...v2.0.0)
+
+**Breaking changes:**
+
+- \(plumbing\) drop support for puppet6 [\#14](https://github.com/lsst-it/puppet-ccs_daq/pull/14) ([jhoblitt](https://github.com/jhoblitt))
+
+**Implemented enhancements:**
+
+- allow lsst/daq \< 3 [\#18](https://github.com/lsst-it/puppet-ccs_daq/pull/18) ([jhoblitt](https://github.com/jhoblitt))
+- add support for puppet8 [\#15](https://github.com/lsst-it/puppet-ccs_daq/pull/15) ([jhoblitt](https://github.com/jhoblitt))
+
+## [v0.5.0](https://github.com/lsst-it/puppet-ccs_daq/tree/v0.5.0) (2023-01-31)
 
 [Full Changelog](https://github.com/lsst-it/puppet-ccs_daq/compare/v0.4.1...v0.5.0)
 
