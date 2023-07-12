@@ -1,6 +1,6 @@
 {
   "name": "lsst-ccs_daq",
-  "version": "1.0.1-rc0",
+  "version": "1.0.1",
   "author": "AURA/LSST",
   "summary": "Configure LSST CCS DAQ related services.",
   "license": "Apache-2.0",
