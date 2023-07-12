@@ -24,6 +24,7 @@ The following parameters are available in the `ccs_daq` class:
 * [`group`](#-ccs_daq--group)
 * [`config_dir`](#-ccs_daq--config_dir)
 * [`instrument`](#-ccs_daq--instrument)
+* [`apps_noinstrument`](#-ccs_daq--apps_noinstrument)
 
 ##### <a name="-ccs_daq--owner"></a>`owner`
 
@@ -56,4 +57,12 @@ Data type: `String`
 Name of the camera
 
 Default value: `'comcam'`
+
+##### <a name="-ccs_daq--apps_noinstrument"></a>`apps_noinstrument`
+
+Data type: `Boolean`
+
+If true, do not include "instrument-" in the /etc/ccs/*.app names.
+
+Default value: `false`
 
