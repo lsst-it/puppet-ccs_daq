@@ -14,11 +14,15 @@
 # @param instrument
 #   Name of the camera
 #
+# @param apps_noinstrument
+#   If true, do not include "instrument-" in the /etc/ccs/*.app names.
+#
 class ccs_daq (
   String $owner = 'ccsadm',
   String $group = 'ccsadm',
   String $config_dir = '/etc/ccs',
   String $instrument = 'comcam',
+  Boolean $apps_noinstrument = false,
 ) {
   require daq::daqsdk
 
@@ -55,8 +59,11 @@ class ccs_daq (
     mode    => '0644',
   }
 
-  ## TODO Is it -ih for v4 and -fp for v5?
-  $appfiles = ['store.app', "${instrument}-ih.app", "${instrument}-fp.app"]
+  if $apps_noinstrument {
+    $appfiles = ['store.app', 'image-handling.app', 'focal-plane.app']
+  } else {
+    $appfiles = ['store.app', "${instrument}-ih.app", "${instrument}-fp.app"]
+  }
 
   $appfiles.each | $appfile | {
     file { "${config_dir}/${appfile}":
