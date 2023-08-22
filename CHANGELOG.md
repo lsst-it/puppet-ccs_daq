@@ -4,13 +4,21 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v1.1.0](https://github.com/lsst-it/puppet-ccs_daq/tree/v1.1.0) (2023-08-22)
+
+[Full Changelog](https://github.com/lsst-it/puppet-ccs_daq/compare/v1.0.1...v1.1.0)
+
+**Implemented enhancements:**
+
+- allow stdlib 9.x [\#25](https://github.com/lsst-it/puppet-ccs_daq/pull/25) ([jhoblitt](https://github.com/jhoblitt))
+
 ## [v1.0.1](https://github.com/lsst-it/puppet-ccs_daq/tree/v1.0.1) (2023-07-12)
 
 [Full Changelog](https://github.com/lsst-it/puppet-ccs_daq/compare/v1.0.0...v1.0.1)
 
 **Implemented enhancements:**
 
-- allow control over *.app names [\#23](https://github.com/lsst-it/puppet-ccs_daq/pull/23)
+- Add option to not include instrument- prefix in /etc/ccs/\*.app file names [\#23](https://github.com/lsst-it/puppet-ccs_daq/pull/23) ([glennmorris](https://github.com/glennmorris))
 
 ## [v1.0.0](https://github.com/lsst-it/puppet-ccs_daq/tree/v1.0.0) (2023-06-23)
 
